@@ -2,6 +2,17 @@ import React from 'react';
 
 
 function NewTicketForm(){
+    let _names = null;
+    let _location = null;
+    let _issue = null;
+
+    function handleNewTicketFormSubmission(event) {
+        event.preventDefault();
+        _names.value = '';
+        _location.value = '';
+        _issue.value = '';
+    }
+
   return (
     <div>
         <style jsx global>{`
@@ -9,19 +20,21 @@ function NewTicketForm(){
                 background-color: pink;
             }
         `}</style>
-    <form> 
+    <form onSubmit={handleNewTicketFormSubmission}> 
         <input 
         type="text"
         id='names'
-        placeholder='Pair Names'/>__
+        placeholder='Pair Names'
+        ref={(input) => {_names = input;}}/>__
         <input 
         type="text"
         id='location'
-        placeholder='Location'/>__
-        <input
+        placeholder='Location'
+        ref={(input) => {_location = input;}}/>__
+        <textarea
         id="issue" 
         placeholder='Describe your issue'
-        cols="30" rows="10"></input>__
+        ref={(textarea) => {_issue = textarea;}}/>__
         <button type='submit'>Help!</button>
     </form>
 </div>

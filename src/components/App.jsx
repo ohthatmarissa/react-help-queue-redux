@@ -1,5 +1,5 @@
 import React from 'react';
-import NewTicketForm from './NewTicketForm';
+import NewTicketControl from './NewTicketControl';
 import Header from './Header';
 import { Switch, Route } from 'react-router-dom';
 import TicketList from './TicketList';
@@ -22,7 +22,7 @@ function App() {
       <Header/>
       <Switch>
         <Route exact path='/' component={TicketList} />
-        <Route path='/newticket' component={NewTicketForm} />
+        <Route path='/newticket' component={NewTicketControl} />
       </Switch>
     </div>
   );
@@ -30,6 +30,3 @@ function App() {
 
 export default App;
 
-// <div>
-//         <img src={icecream1} alt="ice cream"/>
-//     </div>
