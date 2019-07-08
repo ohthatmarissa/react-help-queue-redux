@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 
 
 function Ticket(props){
-
   const ticketInformation =
-    
-      
       <div className="ticketonly">
         <style jsx global>{`
             div.ticketonly {
@@ -15,13 +12,13 @@ function Ticket(props){
         `}</style>
         <h3>{props.location}-{props.names}</h3>
         <h4>{props.formattedWaitTime} ago</h4>
-        <p><em>{props.issue}</em></p>
+        
         <br></br>
         <hr/>
       </div>;
   if (props.currentRouterPath === '/admin'){
     return (
-      <div onClick={() => {alert ('Hey, you just clicked a target that belongs to ' + props.names);}}>
+      <div onClick={() => {props.onTicketSelection({names: props.names, location: props.location, issue: props.issue, formattedWaitTime: props.formattedWaitTime});}}>
         {ticketInformation}
       </div>
     );
@@ -32,7 +29,6 @@ function Ticket(props){
       </div>
     );
   }
-  
 }
 
 Ticket.propTypes = {
@@ -40,7 +36,8 @@ Ticket.propTypes = {
   location: PropTypes.string.isRequired,
   issue: PropTypes.string,
   formattedWaitTime: PropTypes.string.isRequired,
-  currentRouterPath: PropTypes.string
+  currentRouterPath: PropTypes.string,
+  onTicketSelection: PropTypes.func
 };
 
 export default Ticket;
