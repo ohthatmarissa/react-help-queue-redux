@@ -23,7 +23,7 @@ import PropTypes from 'prop-types';
 
 
 function TicketList(props) {
-  console.log("Hi" + props.ticketList);
+  console.log('Hi' + props.ticketList);
   return (
     <div>
       <hr/>
@@ -39,6 +39,6 @@ function TicketList(props) {
 
 TicketList.PropTypes = {
   ticketList: PropTypes.array
-}
+};
 
 export default TicketList;

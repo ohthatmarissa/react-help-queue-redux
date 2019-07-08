@@ -3,6 +3,7 @@ import NewTicketControl from './NewTicketControl';
 import Header from './Header';
 import { Switch, Route } from 'react-router-dom';
 import TicketList from './TicketList';
+import Error404 from './Error404';
 // import icecream1 from './assets/images/icecream1.jpg';
 
 
@@ -38,7 +39,8 @@ class App extends React.Component {
         <Header/>
         <Switch>
           <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />
-            <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
+          <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
+          <Route component={Error404} />
         </Switch>
       </div>
     );
