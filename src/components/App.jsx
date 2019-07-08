@@ -4,8 +4,9 @@ import Header from './Header';
 import { Switch, Route } from 'react-router-dom';
 import TicketList from './TicketList';
 import Error404 from './Error404';
-import Moment from 'moment';
-// import icecream1 from './assets/images/icecream1.jpg';
+import Admin from './Admin';
+
+
 
 
 class App extends React.Component {
@@ -64,6 +65,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' render={()=><TicketList ticketList={this.state.masterTicketList} />} />
           <Route path='/newticket' render={()=><NewTicketControl onNewTicketCreation={this.handleAddingNewTicketToList} />} />
+          <Route path='/admin' render={(props)=><Admin ticketList={this.state.masterTicketList} currentRouterPath={props.location.pathname} />} />
           <Route component={Error404} />
         </Switch>
       </div>
