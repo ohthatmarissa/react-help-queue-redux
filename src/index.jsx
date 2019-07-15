@@ -2,15 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App';
 import { HashRouter } from 'react-router-dom';
-import { AppContainer } from 'react-hot-loader';
+
+import { createStore } from 'redux';
+import ticketListReducer from './reducers/ticket-list-reducer';
+import { Provider } from 'react-redux';
+
+const store = createStore(ticketListReducer);
+
+let unsubscribe = store.subscribe(() => 
+  console.log(store.getState())
+);
 
 const render = (Component) => {
   ReactDOM.render(
-    <AppContainer>
-      <HashRouter>
+    <HashRouter>
+      <Provider store={store}>
         <Component/>
-      </HashRouter>
-    </AppContainer>,
+      </Provider>
+    </HashRouter>,
     document.getElementById('react-app-root')
   );
 };
@@ -23,19 +32,3 @@ if(module.hot) {
   });
 }
 /*eslint-enable */
-
-
-// function liveTime() {
-//     var heading = React.createElement('h1',  {}, 'Help Queue!');
-//     var ticketLocation = React.createElement('h3', {}, '3b');
-//     var ticketNames = React.createElement('h3', {}, 'Sweetie and Booger');
-//     var ticketIssue = React.createElement('h3', {}, "This shit is cray")
-//     var app = React.createElement('div', {}, heading, ticketLocation, ticketNames, ticketIssue);
-
-// ReactDOM.render(
-//     app,
-//     document.getElementById('react-app-root')
-//     );
-// }
-
-// setInterval(liveTime, 1000);

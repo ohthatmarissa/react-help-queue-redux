@@ -1,8 +1,8 @@
 import React from 'react';
-import { v4 } from 'uuid';
-import PropTypes from 'prop-types';
 import Moment from 'moment';
-
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { v4 } from 'uuid';
 
 function NewTicketForm(props){
   let _names = null;
@@ -10,16 +10,18 @@ function NewTicketForm(props){
   let _issue = null;
 
   function handleNewTicketFormSubmission(event) {
+    const { dispatch } = props;
     event.preventDefault();
-    props.onNewTicketCreation({names: _names.value, location: _location.value, issue:_issue.value, id: v4(), timeOpen: new Moment()});
-    _names.value = '';
-    _location.value = '';
-    _issue.value = '';
+    const action = {
+      type: 'ADD_TICKET',
+      id: v4(),
+      names: _names.value,
+      location: _location.value,
+      issue: _issue.value,
+      timeOpen: new Moment()
+    };
+    dispatch(action);
   }
-
-  NewTicketForm.propTypes = {
-    onNewTicketCreation: PropTypes.func
-  };
 
   return (
     <div>
@@ -28,25 +30,29 @@ function NewTicketForm(props){
                 background-color: pink;
             }
         `}</style>
-      <form onSubmit={handleNewTicketFormSubmission}> 
-        <input 
-          type="text"
+      <form onSubmit={handleNewTicketFormSubmission}>
+        <input
+          type='text'
           id='names'
           placeholder='Pair Names'
-          ref={(input) => {_names = input;}}/>__
-        <input 
-          type="text"
+          ref={(input) => {_names = input;}}/>
+        <input
+          type='text'
           id='location'
           placeholder='Location'
-          ref={(input) => {_location = input;}}/>__
+          ref={(input) => {_location = input;}}/>
         <textarea
-          id="issue" 
-          placeholder='Describe your issue'
-          ref={(textarea) => {_issue = textarea;}}/>__
+          id='issue'
+          placeholder='Describe your issue.'
+          ref={(textarea) => {_issue = textarea;}}/>
         <button type='submit'>Help!</button>
       </form>
     </div>
   );
 }
 
-export default NewTicketForm;
+NewTicketForm.propTypes = {
+  onNewTicketCreation: PropTypes.func
+};
+
+export default connect()(NewTicketForm);
