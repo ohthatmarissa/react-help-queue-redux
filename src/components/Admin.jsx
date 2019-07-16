@@ -15,17 +15,15 @@ function Admin(props){
       {optionalSelectedTicketContent}
       <TicketList 
         ticketList={props.ticketList}
-        currentRouterPath={props.currentRouterPath} 
-        onTicketSelection={props.onTicketSelection}/>
+        currentRouterPath={props.currentRouterPath}/>
     </div>
   );
 }
 
 Admin.propTypes = {
-  ticketList: PropTypes.array,
+  ticketList: PropTypes.object,
   currentRouterPath: PropTypes.string.isRequired,
-  onTicketSelection: PropTypes.func.isRequired,
-  selectedTicket: PropTypes.object
+  selectedTicket: PropTypes.string
 };
 
 const mapStateToProps= state => {

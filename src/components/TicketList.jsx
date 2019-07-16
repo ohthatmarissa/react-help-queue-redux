@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 
 function TicketList(props) {
-  console.log(props.ticketList);
   return(
     <div>
       <hr/>
@@ -14,7 +13,7 @@ function TicketList(props) {
           location={ticket.location}
           issue={ticket.issue}
           formattedWaitTime={ticket.formattedWaitTime}
-          currentRouterPath={props.currentRouterPath} onTicketSelection={props.onTicketSelection}
+          currentRouterPath={props.currentRouterPath}
           key={ticketId}
           ticketId={ticketId} />;
       })}
@@ -24,8 +23,7 @@ function TicketList(props) {
 
 TicketList.propTypes = {
   ticketList: PropTypes.object,
-  currentRouterPath: PropTypes.string,
-  onTicketSelection: PropTypes.func
+  currentRouterPath: PropTypes.string
 };
 
 export default TicketList;
