@@ -14,7 +14,7 @@ describe('rootReducer', () => {
         });
     });
     test('Should contain ticketListReducer logic', () => {
-        expect(store.getState().masterTicketList).toEqual(ticketListReducer(undifined, { type: null }));
+        expect(store.getState().masterTicketList).toEqual(ticketListReducer(undefined, { type: null }));
     });
 
     test('Should contain selectedTicketRouter logic', () => {
