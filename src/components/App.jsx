@@ -32,7 +32,7 @@ class App extends React.Component {
       const action = {
         type: 'UPDATE_TIME',
         id: ticketId,
-        newFormattedWaitTime: newFormattedWaitTime
+        formattedWaitTime: newFormattedWaitTime
       };
       dispatch(action);
     });
